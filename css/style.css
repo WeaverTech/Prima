@@ -1,0 +1,510 @@
+/* =====================================================
+   PRIMA-AGRO – one-pager
+   Paleta: biel, ciemna zieleń, słoneczny żółty (z logo)
+   ===================================================== */
+
+:root {
+  --green: #1B5E33;
+  --green-dark: #144726;
+  --green-light: #3E8E3B;
+  --yellow: #FFD500;
+  --yellow-dark: #E6BF00;
+  --ink: #1E2B22;
+  --muted: #5B6B60;
+  --bg: #FFFFFF;
+  --bg-soft: #F5F7F4;
+  --radius: 14px;
+  --shadow: 0 6px 24px rgba(20, 71, 38, 0.10);
+  --topbar-h: 72px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+img { max-width: 100%; display: block; }
+
+.container {
+  width: min(1160px, 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+/* ---------- Przyciski ---------- */
+.btn {
+  display: inline-block;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.9rem 1.6rem;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.btn--yellow {
+  background: var(--yellow);
+  color: var(--green-dark);
+  box-shadow: 0 4px 0 var(--yellow-dark);
+}
+.btn--yellow:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--yellow-dark); }
+.btn--yellow:active { transform: translateY(1px); box-shadow: 0 2px 0 var(--yellow-dark); }
+.btn--ghost {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+}
+.btn--ghost:hover { background: rgba(255, 255, 255, 0.22); }
+.btn--big { font-size: 1.2rem; padding: 1.05rem 2rem; }
+.btn--full { display: block; width: 100%; }
+
+/* ---------- Górna nawigacja ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 3px solid var(--yellow);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+}
+.topbar__inner {
+  min-height: var(--topbar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.5rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+}
+.brand__logo { width: 52px; height: 52px; }
+.brand__name {
+  font-weight: 900;
+  font-size: 1.35rem;
+  letter-spacing: 0.03em;
+  color: var(--green);
+  line-height: 1.1;
+  display: flex;
+  flex-direction: column;
+}
+.brand__name small {
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.topbar__phone {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--yellow);
+  color: var(--green-dark);
+  text-decoration: none;
+  padding: 0.55rem 1.2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 3px 0 var(--yellow-dark);
+  line-height: 1.15;
+  white-space: nowrap;
+}
+.topbar__phone:hover { transform: translateY(-1px); }
+.topbar__phone strong { font-size: 1.7rem; font-weight: 900; letter-spacing: 0.02em; }
+.topbar__phone-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  max-width: 5.5rem;
+}
+.icon-phone { width: 30px; height: 30px; fill: var(--green-dark); flex-shrink: 0; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  background: url("../assets/img/hero-field.webp") center 65% / cover no-repeat;
+}
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, rgba(15, 46, 27, 0.86) 0%, rgba(15, 46, 27, 0.55) 55%, rgba(15, 46, 27, 0.18) 100%);
+}
+.hero__content {
+  position: relative;
+  color: #fff;
+  padding-block: 4.5rem;
+  max-width: 720px;
+  margin-left: calc((100% - min(1160px, 100% - 2.5rem)) / 2);
+}
+.hero__eyebrow {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--green-dark);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 1.2rem;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.3rem);
+  font-weight: 900;
+  line-height: 1.12;
+  margin-bottom: 1.1rem;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+.hero .hl { color: var(--yellow); }
+.hero__sub {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  max-width: 34rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+.hero__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+/* ---------- Pasek zaufania ---------- */
+.trust { background: var(--bg-soft); padding-block: 3rem; }
+.trust__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.trust__item { text-align: center; padding-inline: 0.5rem; }
+.trust__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: var(--yellow);
+  display: grid;
+  place-items: center;
+}
+.trust__icon svg { width: 34px; height: 34px; fill: var(--green-dark); }
+.trust__item h3 { color: var(--green); font-size: 1.15rem; margin-bottom: 0.4rem; }
+.trust__item p { color: var(--muted); font-size: 0.97rem; }
+
+/* ---------- Katalog ---------- */
+.catalog { padding-block: 4.5rem; }
+.section-title {
+  text-align: center;
+  color: var(--green);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 900;
+}
+.section-sub {
+  text-align: center;
+  color: var(--muted);
+  max-width: 40rem;
+  margin: 0.8rem auto 3rem;
+  font-size: 1.08rem;
+}
+.catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.8rem;
+}
+.card {
+  position: relative;
+  background: #fff;
+  border: 1px solid #E4EAE3;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.card__badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  background: var(--yellow);
+  color: var(--green-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+}
+.card__badge--blue { background: #2D7DD2; color: #fff; }
+.card__badge--green { background: var(--green-light); color: #fff; }
+.card__img { background: #fff; border-bottom: 1px solid #EEF2ED; }
+.card__img img { width: 100%; height: 230px; object-fit: cover; }
+.card__body {
+  padding: 1.4rem 1.4rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.card__body h3 {
+  color: var(--green);
+  font-size: 1.25rem;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+}
+.card__variant { font-weight: 500; color: var(--muted); font-size: 1rem; }
+.card__colors {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin-bottom: 0.9rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid #C9D2C8;
+  margin-left: 0.4rem;
+}
+.dot--white { background: #fff; }
+.dot--black { background: #222; }
+.dot--green { background: var(--green-light); }
+.dot--blue { background: #2D7DD2; }
+.card__features {
+  list-style: none;
+  margin-bottom: 1.2rem;
+  flex: 1;
+}
+.card__features li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 0.55rem;
+  font-size: 0.95rem;
+}
+.card__features li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--green-light);
+  font-weight: 900;
+}
+.card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.card__price span {
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: var(--green);
+}
+.card__price em { font-style: normal; color: var(--muted); font-size: 0.9rem; }
+.catalog__note {
+  text-align: center;
+  margin-top: 2.5rem;
+  color: var(--muted);
+}
+.catalog__note a { color: var(--green); font-weight: 700; }
+
+/* ---------- Strefa B2B ---------- */
+.b2b { position: relative; padding-block: 4.5rem; color: #fff; }
+.b2b__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.b2b__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, rgba(20, 71, 38, 0.95) 0%, rgba(20, 71, 38, 0.88) 60%, rgba(20, 71, 38, 0.78) 100%);
+}
+.b2b__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3rem;
+  align-items: center;
+}
+.b2b__eyebrow {
+  color: var(--yellow);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  margin-bottom: 0.8rem;
+}
+.b2b__text h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 1.3rem;
+}
+.b2b__list { list-style: none; margin-bottom: 1.5rem; }
+.b2b__list li {
+  position: relative;
+  padding-left: 1.8rem;
+  margin-bottom: 0.7rem;
+  font-size: 1.02rem;
+}
+.b2b__list li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--yellow);
+  font-weight: 900;
+}
+.b2b__phone a { color: var(--yellow); font-weight: 900; font-size: 1.3rem; text-decoration: none; }
+.b2b__form {
+  background: #fff;
+  color: var(--ink);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  box-shadow: var(--shadow);
+}
+.b2b__form h3 {
+  color: var(--green);
+  font-size: 1.35rem;
+  margin-bottom: 1.1rem;
+}
+.b2b__form label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-bottom: 0.3rem;
+  color: var(--green-dark);
+}
+.b2b__form input,
+.b2b__form textarea {
+  width: 100%;
+  font: inherit;
+  padding: 0.7rem 0.9rem;
+  border: 2px solid #DCE4DB;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  background: var(--bg-soft);
+}
+.b2b__form input:focus,
+.b2b__form textarea:focus {
+  outline: none;
+  border-color: var(--green-light);
+  background: #fff;
+}
+.b2b__form-note {
+  margin-top: 0.8rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- Kontakt / CTA końcowe ---------- */
+.contact { background: var(--bg-soft); padding-block: 4rem; }
+.contact__inner { text-align: center; }
+.contact h2 { color: var(--green); font-size: clamp(1.5rem, 3.5vw, 2.2rem); margin-bottom: 1.2rem; }
+.contact__phone {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--green-dark);
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-weight: 900;
+  text-decoration: none;
+  padding: 0.7rem 2.2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 5px 0 var(--yellow-dark);
+  margin-bottom: 1.2rem;
+  transition: transform 0.15s ease;
+}
+.contact__phone:hover { transform: translateY(-2px); }
+.contact p { color: var(--muted); }
+
+/* ---------- Stopka ---------- */
+.footer { background: var(--green-dark); color: #DCE8DE; }
+.footer a { color: var(--yellow); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+.footer__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding-block: 3rem;
+}
+.footer__brand { display: flex; flex-direction: column; gap: 0.2rem; }
+.footer__brand strong { color: #fff; font-size: 1.2rem; letter-spacing: 0.04em; }
+.footer__brand span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; }
+.footer__logo {
+  width: 64px;
+  height: 64px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 3px;
+  margin-bottom: 0.6rem;
+}
+.footer__address { font-style: normal; line-height: 1.8; }
+.footer__contact { line-height: 1.9; }
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-block: 1rem;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ---------- Mobilny pasek połączenia ---------- */
+.callbar {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 110;
+  background: var(--yellow);
+  color: var(--green-dark);
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.15rem;
+  padding: 0.95rem 1rem calc(0.95rem + env(safe-area-inset-bottom));
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.18);
+}
+.callbar strong { font-weight: 900; font-size: 1.3rem; }
+
+/* =====================================================
+   RESPONSYWNOŚĆ
+   ===================================================== */
+@media (max-width: 900px) {
+  .trust__grid { grid-template-columns: 1fr; gap: 1.6rem; max-width: 460px; margin-inline: auto; }
+  .b2b__inner { grid-template-columns: 1fr; }
+  .footer__grid { grid-template-columns: 1fr; gap: 1.6rem; text-align: center; }
+  .footer__brand { align-items: center; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 17px; padding-bottom: 64px; } /* miejsce na pasek połączenia */
+  .callbar { display: block; }
+
+  .topbar__inner { flex-direction: column; align-items: stretch; gap: 0.4rem; padding-block: 0.7rem; }
+  .brand { justify-content: center; }
+  .topbar__phone { justify-content: center; }
+  .topbar__phone strong { font-size: 1.9rem; }
+  .topbar__phone-label { max-width: none; }
+
+  .hero { min-height: 480px; }
+  .hero__content { padding-block: 3.2rem; }
+  .hero__cta .btn { width: 100%; }
+
+  .catalog { padding-block: 3rem; }
+  .card__img img { height: 200px; }
+
+  .b2b { padding-block: 3rem; }
+  .b2b__form { padding: 1.3rem; }
+}
