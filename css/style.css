@@ -415,6 +415,26 @@ img { max-width: 100%; display: block; }
   font-size: 0.85rem;
   color: var(--muted);
 }
+.b2b__form-status {
+  margin-top: 0.9rem;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
+}
+.b2b__form-status--ok {
+  background: #E6F4E8;
+  color: var(--green-dark);
+  border: 1px solid #B9DFC0;
+}
+.b2b__form-status--error {
+  background: #FBEAEA;
+  color: #8C2B2B;
+  border: 1px solid #EFC4C4;
+}
+.b2b__form-status--error a { color: #8C2B2B; font-weight: 700; }
+.b2b__form button:disabled { opacity: 0.6; cursor: wait; }
 
 /* ---------- Kontakt / CTA końcowe ---------- */
 .contact { background: var(--bg-soft); padding-block: 4rem; }

@@ -212,9 +212,9 @@
           <p class="b2b__phone">Wolisz porozmawiać? <a href="tel:+48606478677">☎ 606 478 677</a></p>
         </div>
 
-        <!-- Formularz B2B: wysyłka przez klienta pocztowego (mailto).
-             Aby podpiąć wysyłkę na skrzynkę bez otwierania programu pocztowego,
-             podmień obsługę w skrypcie na usługę typu FormSubmit / Formspree. -->
+        <!-- Formularz B2B: wysyłka przez FormSubmit (https://formsubmit.co) – bez zakładania konta.
+             WAŻNE: podmień adres e-mail w stałej FORM_EMAIL w skrypcie na dole strony,
+             a po pierwszej wysyłce kliknij link aktywacyjny, który FormSubmit wyśle na tę skrzynkę. -->
         <form class="b2b__form" id="b2bForm" novalidate>
           <h3>Zapytaj o cennik hurtowy</h3>
           <label for="f-name">Nazwa firmy / imię i nazwisko</label>
@@ -223,7 +223,8 @@
           <input type="tel" id="f-phone" name="phone" required autocomplete="tel" placeholder="np. 600 000 000">
           <label for="f-msg">Czego potrzebujesz? (opcjonalnie)</label>
           <textarea id="f-msg" name="message" rows="3" placeholder="np. paleta folii LEGEND 750 biała + siatka"></textarea>
-          <button type="submit" class="btn btn--yellow btn--full btn--big">Wyślij zapytanie hurtowe</button>
+          <button type="submit" class="btn btn--yellow btn--full btn--big" id="b2bSubmit">Wyślij zapytanie hurtowe</button>
+          <p class="b2b__form-status" id="b2bStatus" role="status" aria-live="polite" hidden></p>
           <p class="b2b__form-note">Odpowiadamy zwykle tego samego dnia roboczego.</p>
         </form>
       </div>
@@ -272,22 +273,62 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    document.getElementById('b2bForm').addEventListener('submit', function (e) {
+    // TODO: podmień na skrzynkę firmową PRIMA-AGRO.
+    // Po pierwszej wysyłce FormSubmit przyśle na ten adres e-mail aktywacyjny –
+    // wystarczy kliknąć w link i formularz zacznie dostarczać zapytania.
+    var FORM_EMAIL = 'kontakt@primaagro.pl';
+
+    var b2bForm = document.getElementById('b2bForm');
+    var b2bSubmit = document.getElementById('b2bSubmit');
+    var b2bStatus = document.getElementById('b2bStatus');
+
+    function showStatus(type, text) {
+      b2bStatus.hidden = false;
+      b2bStatus.className = 'b2b__form-status b2b__form-status--' + type;
+      b2bStatus.innerHTML = text;
+    }
+
+    b2bForm.addEventListener('submit', function (e) {
       e.preventDefault();
       var name = document.getElementById('f-name').value.trim();
       var phone = document.getElementById('f-phone').value.trim();
       var msg = document.getElementById('f-msg').value.trim();
       if (!name || !phone) {
-        alert('Podaj nazwę firmy oraz numer telefonu, abyśmy mogli oddzwonić.');
+        showStatus('error', 'Podaj nazwę firmy oraz numer telefonu, abyśmy mogli oddzwonić.');
         return;
       }
-      var body = 'Zapytanie o cennik hurtowy PRIMA-AGRO%0D%0A%0D%0A' +
-        'Firma: ' + encodeURIComponent(name) + '%0D%0A' +
-        'Telefon: ' + encodeURIComponent(phone) + '%0D%0A' +
-        'Wiadomo\u015b\u0107: ' + encodeURIComponent(msg || '-');
-      // TODO: podmień adres e-mail na skrzynkę firmową PRIMA-AGRO
-      window.location.href = 'mailto:kontakt@primaagro.pl?subject=' +
-        encodeURIComponent('Zapytanie o cennik hurtowy – ' + name) + '&body=' + body;
+
+      b2bSubmit.disabled = true;
+      b2bSubmit.textContent = 'Wysyłanie…';
+      b2bStatus.hidden = true;
+
+      fetch('https://formsubmit.co/ajax/' + FORM_EMAIL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: 'Zapytanie o cennik hurtowy – ' + name,
+          _template: 'table',
+          'Firma': name,
+          'Telefon': phone,
+          'Wiadomość': msg || '-'
+        })
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
+        })
+        .then(function () {
+          b2bForm.reset();
+          showStatus('ok', '✔ Dziękujemy! Zapytanie zostało wysłane – odezwiemy się wkrótce.');
+        })
+        .catch(function () {
+          showStatus('error',
+            'Nie udało się wysłać zapytania. Zadzwoń do nas: <a href="tel:+48606478677">606 478 677</a>');
+        })
+        .finally(function () {
+          b2bSubmit.disabled = false;
+          b2bSubmit.textContent = 'Wyślij zapytanie hurtowe';
+        });
     });
   </script>
 </body>
