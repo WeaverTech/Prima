@@ -16,6 +16,42 @@ python3 -m http.server 8000
 # otwórz http://localhost:8000
 ```
 
+## Publikacja na domenie z home.pl
+
+### Wariant A – masz w home.pl także hosting (serwer WWW)
+
+1. Zaloguj się do panelu [home.pl](https://home.pl) i przejdź do usługi hostingu
+   (Serwery WWW). Sprawdź lub ustaw hasło do konta FTP
+   (Usługi → Twój serwer → Dostęp FTP).
+2. Połącz się z serwerem przez **WebFTP** (wbudowany w panel home.pl) albo
+   darmowy program **FileZilla** (host: adres serwera z panelu, np.
+   `serwerNNNN.home.pl`, login i hasło FTP).
+3. Wgraj do katalogu głównego domeny (najczęściej `public_html/`) całą zawartość
+   tego repozytorium: `index.html`, folder `css/` i folder `assets/`.
+4. Włącz **darmowy certyfikat SSL** dla domeny w panelu home.pl
+   (WWW → Certyfikaty SSL), aby strona działała pod `https://`.
+5. Gotowe – strona będzie widoczna pod Twoją domeną od razu po wgraniu plików.
+
+### Wariant B – masz tylko domenę (bez hostingu)
+
+Nie musisz dokupować hostingu – skorzystaj z darmowego GitHub Pages:
+
+1. Scal ten branch do `main`, a następnie w ustawieniach repozytorium na GitHub:
+   **Settings → Pages → Source: Deploy from a branch → `main` / root**.
+2. W sekcji **Custom domain** wpisz swoją domenę (np. `www.twojadomena.pl`)
+   i zaznacz „Enforce HTTPS" (certyfikat wystawi się automatycznie).
+3. W panelu home.pl (Domeny → Twoja domena → Konfiguracja DNS) dodaj:
+   - rekord **CNAME**: `www` → `<nazwa-konta>.github.io`
+   - rekordy **A** dla domeny głównej (bez www): `185.199.108.153`,
+     `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+4. Zmiany DNS propagują się zwykle od kilku minut do kilku godzin.
+
+### Po publikacji
+
+- Podmień `FORM_EMAIL` i aktywuj FormSubmit (instrukcja niżej).
+- Otwórz stronę na telefonie i sprawdź, czy przyciski „Zadzwoń i zamów"
+  otwierają wybieranie numeru.
+
 ## Struktura
 
 - `index.html` – cała treść strony (hero, pasek zaufania, katalog z cenami, strefa B2B, kontakt, stopka)
