@@ -99,6 +99,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   flex-direction: column;
 }
+.brand__name > span { white-space: nowrap; }
 .brand__name small {
   font-weight: 500;
   font-size: 0.68rem;
@@ -120,13 +121,18 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
 }
 .topbar__phone:hover { transform: translateY(-1px); }
+.topbar__phone-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 .topbar__phone strong { font-size: 1.7rem; font-weight: 900; letter-spacing: 0.02em; }
 .topbar__phone-label {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  max-width: 5.5rem;
+  letter-spacing: 0.1em;
+  opacity: 0.85;
 }
 .icon-phone { width: 30px; height: 30px; fill: var(--green-dark); flex-shrink: 0; }
 
@@ -495,8 +501,8 @@ img { max-width: 100%; display: block; }
   .topbar__inner { flex-direction: column; align-items: stretch; gap: 0.4rem; padding-block: 0.7rem; }
   .brand { justify-content: center; }
   .topbar__phone { justify-content: center; }
+  .topbar__phone-text { align-items: center; }
   .topbar__phone strong { font-size: 1.9rem; }
-  .topbar__phone-label { max-width: none; }
 
   .hero { min-height: 480px; }
   .hero__content { padding-block: 3.2rem; }
