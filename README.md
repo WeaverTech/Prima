@@ -55,8 +55,12 @@ Nie musisz dokupować hostingu – skorzystaj z darmowego GitHub Pages:
 ## Struktura
 
 - `index.html` – cała treść strony (hero, pasek zaufania, katalog z cenami, strefa B2B, kontakt, stopka)
+  oraz dane strukturalne SEO (schema.org: LocalBusiness + produkty z cenami)
 - `css/style.css` – style (kolory z logo: ciemna zieleń `#1B5E33`, żółty `#FFD500`, biel)
-- `assets/img/` – logo (`logo.jpg` – pełne, `logo-mark.png` – sam znak używany na stronie) i zdjęcia produktów (WebP)
+- `assets/img/` – logo (`logo.jpg` – pełne, `logo-mark.png` – sam znak używany na stronie),
+  zdjęcia produktów (`product-*.webp` – zoptymalizowane wersje używane na stronie) oraz
+  oryginalne pliki źródłowe zdjęć
+- `robots.txt` i `sitemap.xml` – pliki dla wyszukiwarek (wgraj razem ze stroną)
 
 ## Jak edytować najważniejsze rzeczy
 
@@ -70,5 +74,21 @@ Nie musisz dokupować hostingu – skorzystaj z darmowego GitHub Pages:
   3. FormSubmit przyśle na tę skrzynkę jednorazowy e-mail aktywacyjny –
      kliknij w link potwierdzający. Od tej chwili każde zapytanie z formularza
      trafi na skrzynkę jako czytelna tabelka (firma, telefon, wiadomość).
-- **Zdjęcia produktów:** podmień pliki w `assets/img/` zachowując nazwy,
-  najlepiej na własne zdjęcia produktowe.
+- **Zdjęcia produktów:** strona używa zoptymalizowanych plików `product-*.webp`
+  w `assets/img/`. Aby podmienić zdjęcie, zapisz nowe pod tą samą nazwą
+  (najlepiej zmniejszone do ok. 900 px szerokości).
+
+## SEO – co jest zrobione i co robić dalej
+
+Na stronie: meta title/description, adres kanoniczny, tagi Open Graph,
+dane strukturalne schema.org (LocalBusiness + 4 produkty z cenami),
+`robots.txt`, `sitemap.xml`, opisy alt zdjęć, szybkie ładowanie (WebP, mobile-first).
+
+Po publikacji warto:
+1. Dodać stronę do [Google Search Console](https://search.google.com/search-console)
+   (weryfikacja domeny przez DNS w home.pl) i zgłosić `sitemap.xml`.
+2. Założyć **Profil Firmy w Google** (Google Business Profile) z adresem
+   Błagodać 1B, telefonem i linkiem do strony – kluczowe dla wyszukiwań lokalnych
+   i widoczności w Mapach Google.
+3. Zbierać opinie klientów w profilu Google.
+4. Zadbać o linki do strony (katalogi branżowe, portale rolnicze, profil FB).
